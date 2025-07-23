@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Info Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Student Info Finder</h1>
+
+        <form method="post" action="/get_birthday">
+            <input type="text" name="roll_no" placeholder="Enter Roll Number" required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if name %}
+            <div class="result success">
+                <p>🔢 <strong>Roll No:</strong> {{ roll_no }}</p>
+                <p>👤 <strong>Name:</strong> {{ name }}</p>
+                <p>🚻 <strong>Gender:</strong> {{ gender }}</p>
+                <p>🎈 <strong>Age:</strong> {{ age }}</p>
+                <p>🎂 <strong>DOB:</strong> {{ birthday }}</p>
+
+                <p class="disclaimer">⚠️ <em>Note:</em> The Date of Birth is based on available records and may not be fully accurate.</p>
+            </div>
+        {% elif error %}
+            <div class="result error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
